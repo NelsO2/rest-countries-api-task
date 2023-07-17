@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Article({
+export default function CountryDetails({
+  /* function to get a particular country-details, pass in props(line;6-10) and return a link to the country detail */
   flags,
   name,
   population,

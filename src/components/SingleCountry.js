@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+/*  useParams hook returns an object whose keys are
+the parameter names declared in the path string in the Route definition */
 
 export default function SingleCountry() {
+  /* getting a single country */
   const [country, setCountry] = useState([]);
   const { name } = useParams();
 
   useEffect(() => {
     const getSingleCountry = async () => {
       try {
-        const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
-        const data = await res.json();
+        const res = await fetch(`https://restcountries.com/v3.1/name/${name}`); /* The fetch() method returns a Promise representing the server's response */
+        const data = await res.json(); /* response. json() resolves to the result of parsing the JSON response into a JavaScript object */
         setCountry(data);
       } catch (error) {
         console.error(error);
@@ -20,7 +23,7 @@ export default function SingleCountry() {
   }, [name]);
 
   useEffect(() => {
-    document.title = `Countries | ${name}`;
+    document.title = `Countries | ${name}`; /* | takes the output of one function as the input for the next function in the chain */
   }, [name]);
 
   return (
@@ -28,7 +31,7 @@ export default function SingleCountry() {
       <section className="p-8 md:py-0 max-w-7xl mx-auto">
         {country.map((item) => (
           <div
-            key={item.population}
+            key={item.population} //key identify which items in the list are changed, updated, or deleted
             className="grid grid-cols-1 gap-8 md:grid-cols-2 md:place-items-center md:h-screen"
           >
             <article>
